@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'core'
+    'core',
+    'django_crontab'
 ]
 
 MIDDLEWARE = [
@@ -127,6 +128,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
+
+CRONJOBS = [
+    ('0 12 * * *', 'cronjob.my_scheduled_job')
+]
 
 STATIC_URL = '/static/'
 
