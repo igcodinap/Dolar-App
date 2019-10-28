@@ -6,12 +6,12 @@ App Description:
    These data are represented graphically through Vue and Chartjs. Connecting through Axios to the Rest API raised with Django.
 
 Utilization:
-   Download documents.
-   Start pip env shell of the api folder
-   Run django server with python manage.py runserver
-   In front folder, lift nuxt server with npm run dev
-   Open localhost: 3000 for viewing the website.
-   To synchronize CronJob run python manage.py crontab add
+   Download documents/
+   Start pip env shell of the api folder/
+   Run django server with python manage.py runserver/
+   In front folder, lift nuxt server with npm run dev/
+   Open localhost: 3000 for viewing the website/
+   To synchronize CronJob run python manage.py crontab add/
   
   
   
