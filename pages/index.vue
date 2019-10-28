@@ -1,34 +1,37 @@
-<template id="">
-  <div class="container">
-    <h1 class="title">Valores dolar</h1>
-    <div class="columns"
-      <ValorCard :valor="valor" v-for="valor in valores" :key="valor.id"/>
-  </div>
-  </div>
-</template>
-
 <script>
-import axios from 'axios';
-import env from '../config/env';
-import ValorCard from '../components/ValorCard'
-  export default {
-    name: 'IndexPage',
-    components: {
-      ValorCard
-    },
-    data(){
-      return {
-        valores: [],
-      }
-    },
-    created(){
-      axios.get(`${env.endpoint}`).then(response=>{
-        this.valores = response.data;
+import VueCharts from 'vue-chartjs'
+import { Line, mixins } from 'vue-chartjs'
+import axios from 'axios'
+
+export default {
+  mixins: [mixins.reactiveData],
+  data() {
+    return {
+      chartData: '',
+    }
+  },
+  extends: Line,
+  mounted() {
+    this.renderChart(this.chartData)
+  },
+  created() {
+    axios.get('http://127.0.0.1:8000/api/dolar/')
+      .then(response => {
+        // JSON responses are automatically parsed.
+        const responseData = response.data
+        this.chartData = {
+          labels: responseData.map(item => item.fecha),
+          datasets: [{
+            label: 'Variacion diaria del dolar',
+             backgroundColor: '#f87979',
+             data: responseData.map(item => item.valor)
+            }]
+          };
+        }
+      )
+      .catch(e => {
+        this.errors.push(e)
       })
     }
   }
 </script>
-
-<style scoped>
-
-</style>
